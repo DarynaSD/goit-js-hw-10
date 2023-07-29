@@ -57,7 +57,7 @@ function handleChangeEvent() {
 
 
 
-selectElem.addEventListener('change', handleChangeEvent)
+selectElem.addEventListener('change', handleChangeEvent);
 
 
 
