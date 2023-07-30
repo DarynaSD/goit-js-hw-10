@@ -1,5 +1,6 @@
-import { fetchBreeds, fetchCatByBreed } from './cat-API'
-import SlimSelect from 'slim-select'
+import { fetchBreeds, fetchCatByBreed } from './cat-API';
+import SlimSelect from 'slim-select';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 const selectElem = document.querySelector('.breed-select');
@@ -22,12 +23,16 @@ fetchBreeds().then(data => {
         
     })
 
+    new SlimSelect({
+        select: selectElem
+    })
+    
     loaderElem.classList.add('is-hidden');
     selectElem.classList.remove('is-hidden');
 
     
-  })
-    .catch(console.warn);
+})
+    .catch('Error! Reload page ang try again');
 
 
 
@@ -35,8 +40,8 @@ fetchBreeds().then(data => {
 
 let breedId = null;
 
+
 function handleChangeEvent() {
-    
     loaderElem.classList.toggle('is-hidden');
     catInfoFieldElem.innerHTML = '';
     catInfoFieldElem.classList.add('is-hidden');
@@ -61,7 +66,7 @@ function handleChangeEvent() {
     loaderElem.classList.toggle('is-hidden');
         
     })
-    .catch(console.warn)
+    .catch('Error! Reload page ang try again')
 }
 
 
