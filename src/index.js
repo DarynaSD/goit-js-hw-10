@@ -24,20 +24,24 @@ fetchBreeds().then(data => {
   })
     .catch(console.warn);
 
+
+
 //пошук інформації про кота, коли користувач обрав породу
+
 let breedId = null;
 
 function handleChangeEvent() {
-    catInfoFieldElem.innerHTML = '';
-
     breedId = selectElem.options[selectElem.selectedIndex].value;
+    erroeElem.classList.toggle('is-hidden')
 
-    fetchCatByBreed(breedId).then(data =>
-    {
+    fetchCatByBreed(breedId).then(data => {
+        loaderElem.classList.remove('is-hidden');
+        alert("loading")
+    catInfoFieldElem.innerHTML = '';
+    
+
         console.log(data);
-
-        data.map(cat =>
-        {
+        data.map(cat => {
             const [breed] = cat.breeds;
             console.log(breed);
             catInfoFieldElem.insertAdjacentHTML('beforeend',
@@ -45,11 +49,14 @@ function handleChangeEvent() {
             <h1>${breed.name}</h1>
             <p>${breed.description}</p>
             <p>${breed.temperament}</p>`)
-        }
-        )
-
-    }
-    )
+        })
+    
+        //loaderElem.classList.add('is-hidden');
+ 
+        //catInfoFieldElem.classList.remove('is-hidden');
+        
+    })
+    .catch(console.warn)
 }
 
 
