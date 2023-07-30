@@ -1,10 +1,15 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-API'
+import SlimSelect from 'slim-select'
 
 
 const selectElem = document.querySelector('.breed-select');
 const loaderElem = document.querySelector('.loader');
 const erroeElem = document.querySelector('.error');
 const catInfoFieldElem = document.querySelector('.cat-info');
+
+// new SlimSelect({
+//     select: selectElem
+// })
 
 //заванажую масив об'єктів з породами при відкритті сторінки
 //наповнюю селект назвами порід
@@ -31,12 +36,13 @@ fetchBreeds().then(data => {
 let breedId = null;
 
 function handleChangeEvent() {
-    catInfoFieldElem.innerHTML = '';
+    
     loaderElem.classList.toggle('is-hidden');
+    catInfoFieldElem.innerHTML = '';
+    catInfoFieldElem.classList.add('is-hidden');
     breedId = selectElem.options[selectElem.selectedIndex].value;
     
     fetchCatByBreed(breedId).then(data => {
-    
     catInfoFieldElem.classList.remove('is-hidden');
     console.log(data);
         
