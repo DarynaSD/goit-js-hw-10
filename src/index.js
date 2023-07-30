@@ -32,7 +32,10 @@ fetchBreeds().then(data => {
 
     
 })
-    .catch('Error! Reload page ang try again');
+    .catch(error => {
+        loaderElem.classList.add('is-hidden');
+        erroeElem.classList.remove('is-hidden')
+    });
 
 
 
@@ -43,6 +46,7 @@ let breedId = null;
 
 function handleChangeEvent() {
     loaderElem.classList.toggle('is-hidden');
+    erroeElem.classList.add('is-hidden');
     catInfoFieldElem.innerHTML = '';
     catInfoFieldElem.classList.add('is-hidden');
     breedId = selectElem.options[selectElem.selectedIndex].value;
@@ -66,7 +70,10 @@ function handleChangeEvent() {
     loaderElem.classList.toggle('is-hidden');
         
     })
-    .catch('Error! Reload page ang try again')
+    .catch(error => {
+        loaderElem.classList.add('is-hidden');
+        erroeElem.classList.remove('is-hidden')
+    })
 }
 
 
