@@ -31,22 +31,25 @@ fetchBreeds().then(data => {
 let breedId = null;
 
 function handleChangeEvent() {
-    loaderElem.classList.toggle('is-hidden')
+    catInfoFieldElem.innerHTML = '';
+    loaderElem.classList.toggle('is-hidden');
     breedId = selectElem.options[selectElem.selectedIndex].value;
     
     fetchCatByBreed(breedId).then(data => {
-    catInfoFieldElem.innerHTML = '';
     
+    catInfoFieldElem.classList.remove('is-hidden');
     console.log(data);
         
     data.map(cat => {
             const [breed] = cat.breeds;
             console.log(breed);
             catInfoFieldElem.insertAdjacentHTML('beforeend',
-                `<img src=${cat.url} width="500px">
+            `<img src=${cat.url} width="500px" alt="cat ${breed.name}">
+            <div class="card-wrap">
             <h1>${breed.name}</h1>
-            <p>${breed.description}</p>
-            <p>${breed.temperament}</p>`)
+            <p class="cat-desc">${breed.description}</p>
+            <p class="cat-temp"><b>Temperament: </b>${breed.temperament}</p>
+            </div>`)
         })
     
     loaderElem.classList.toggle('is-hidden');
@@ -54,10 +57,6 @@ function handleChangeEvent() {
     })
     .catch(console.warn)
 }
-
-
-
-
 
 
 selectElem.addEventListener('change', handleChangeEvent);

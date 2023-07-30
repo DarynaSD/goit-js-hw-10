@@ -1,6 +1,10 @@
-.is-hidden {
-    display: none;
+:root {
+    --box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+        0px 1px 1px rgba(46, 47, 66, 0.16),
+        0px 2px 1px rgba(46, 47, 66, 0.08);
 }
+
+
 
 .loader {
     position: relative;
@@ -30,4 +34,33 @@
     100% {
         transform: rotate(360deg)
     }
+}
+
+.cat-info {
+margin-left: auto;
+margin-right: auto;
+margin-top: 40px;
+padding: 15px;
+
+width: 500px;
+box-shadow: var(--box-shadow);
+border-radius: 2px;
+overflow: hidden;
+}
+
+.card-wrap {
+padding: 40px;
+}
+
+.cat-desc {
+    margin-top: 20px;
+}
+
+.cat-temp {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.is-hidden {
+    display: none;
 }
