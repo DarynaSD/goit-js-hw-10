@@ -31,17 +31,15 @@ fetchBreeds().then(data => {
 let breedId = null;
 
 function handleChangeEvent() {
+    loaderElem.classList.toggle('is-hidden')
     breedId = selectElem.options[selectElem.selectedIndex].value;
-    erroeElem.classList.toggle('is-hidden')
-
+    
     fetchCatByBreed(breedId).then(data => {
-        loaderElem.classList.remove('is-hidden');
-        alert("loading")
     catInfoFieldElem.innerHTML = '';
     
-
-        console.log(data);
-        data.map(cat => {
+    console.log(data);
+        
+    data.map(cat => {
             const [breed] = cat.breeds;
             console.log(breed);
             catInfoFieldElem.insertAdjacentHTML('beforeend',
@@ -51,9 +49,7 @@ function handleChangeEvent() {
             <p>${breed.temperament}</p>`)
         })
     
-        //loaderElem.classList.add('is-hidden');
- 
-        //catInfoFieldElem.classList.remove('is-hidden');
+    loaderElem.classList.toggle('is-hidden');
         
     })
     .catch(console.warn)
